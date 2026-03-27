@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickBite – Food Delivery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Quick<span>Bite</span></div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn sign-btn" id="nav-sign-btn" onclick="openSignIn()">
+      👤 <span id="nav-user-label">Sign In</span>
+    </button>
+    <button class="btn cart-btn" onclick="toggleCart()">
+      🛒 Cart
+      <span id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">🚀 Free Delivery Today</div>
+    <h1>Hungry? Get <em>Fresh Food</em> at Your Door</h1>
+    <p>Order from top local restaurants, enjoy free delivery on every order. Fast, fresh, and ridiculously simple.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Browse Menu</button>
+      <button class="btn btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</button>
+    </div>
+    <div class="hero-search">
+      <input type="text" id="search-input" placeholder="Search burgers, pizza, sushi…" oninput="filterMenu()" />
+      <button onclick="filterMenu()">Search</button>
+    </div>
+  </div>
+  <div class="hero-deco">🍔</div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories-section">
+  <div class="section-header">
+    <h2>What are you craving?</h2>
+    <p>Pick a category and we'll show you the best options.</p>
+  </div>
+  <div class="categories-grid" id="categories"></div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="menu-section">
+  <div class="section-header">
+    <h2>Today's Menu</h2>
+    <p>Everything made fresh, delivered fast.</p>
+  </div>
+  <div class="menu-grid" id="menu-grid"></div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-section">
+  <div class="section-header">
+    <h2>How QuickBite Works</h2>
+    <p>Three easy steps and your food is on the way.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-icon">🍽️</div>
+      <h4>Choose your meal</h4>
+      <p>Browse our menu and pick what you love. New items added daily.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">🛒</div>
+      <h4>Add to cart</h4>
+      <p>Add items, adjust quantities, and review your order any time.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">🚀</div>
+      <h4>Fast delivery</h4>
+      <p>We deliver to your door — free of charge, every single time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="section-header">
+    <h2>About QuickBite</h2>
+    <p>We believe great food should reach everyone — fast and free.</p>
+  </div>
+  <div class="about-text">
+    QuickBite started with a simple mission: no delivery fees, ever. We partner with the best local kitchens to bring you restaurant-quality meals at honest prices. Whether it's a weeknight dinner or a lazy weekend lunch, we've got you covered.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>QuickBite</strong> · Free delivery, always. Built with ❤️</p>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>Your Order</h3>
+    <button class="close-cart" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-list">
+    <div class="cart-empty">
+      <div class="icon">🛒</div>
+      <p>Your cart is empty.<br>Add something tasty!</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row"><span>Subtotal</span><span id="subtotal">₹0.00</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span class="free-label">FREE</span></div>
+    <div class="cart-total-row final"><span>Total</span><span id="total">₹0.00</span></div>
+    <button class="checkout-btn" id="checkout-btn" onclick="handleCheckout()" disabled>
+      Proceed to Pay →
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     SIGN IN MODAL
+══════════════════════════════ -->
+<div class="modal-overlay" id="signin-modal">
+  <div class="modal wide-modal">
+
+    <!-- Step 1: Choose method -->
+    <div id="signin-step-1">
+      <button class="modal-x" onclick="closeSignIn()">✕</button>
+      <div class="modal-icon-big">👋</div>
+      <h3>Welcome to QuickBite!</h3>
+      <p class="modal-sub">How would you like to sign in?</p>
+      <div class="signin-options">
+        <button class="signin-option-btn" onclick="showPhoneStep()">
+          <span class="option-icon">📱</span>
+          <span class="option-label">Use my Phone Number</span>
+          <span class="option-arrow">→</span>
+        </button>
+        <button class="signin-option-btn" onclick="quickGuestLogin()">
+          <span class="option-icon">🚀</span>
+          <span class="option-label">Continue as Guest</span>
+          <span class="option-arrow">→</span>
+        </button>
+      </div>
+      <p class="signin-note">No password needed. Super easy! 🎉</p>
+    </div>
+
+    <!-- Step 2: Phone number -->
+    <div id="signin-step-2" style="display:none">
+      <button class="modal-x" onclick="closeSignIn()">✕</button>
+      <div class="modal-icon-big">📱</div>
+      <h3>Enter Your Phone Number</h3>
+      <p class="modal-sub">We'll send you a quick 4-digit code</p>
+      <div class="big-input-wrap">
+        <span class="input-prefix">🇮🇳 +91</span>
+        <input type="tel" id="phone-input" class="big-input"
+               placeholder="98765 43210" maxlength="10"
+               oninput="this.value=this.value.replace(/\D/g,'')" />
+      </div>
+      <button class="big-action-btn" onclick="sendOTP()">📨 Send Code</button>
+      <button class="back-link" onclick="showSignInStep1()">← Go back</button>
+    </div>
+
+    <!-- Step 3: OTP -->
+    <div id="signin-step-3" style="display:none">
+      <button class="modal-x" onclick="closeSignIn()">✕</button>
+      <div class="modal-icon-big">🔐</div>
+      <h3>Enter the 4-Digit Code</h3>
+      <p class="modal-sub" id="otp-sent-msg">Sent to your phone</p>
+      <div class="otp-boxes">
+        <input class="otp-box" type="tel" maxlength="1" id="otp0" oninput="otpInput(0)" />
+        <input class="otp-box" type="tel" maxlength="1" id="otp1" oninput="otpInput(1)" />
+        <input class="otp-box" type="tel" maxlength="1" id="otp2" oninput="otpInput(2)" />
+        <input class="otp-box" type="tel" maxlength="1" id="otp3" oninput="otpInput(3)" />
+      </div>
+      <div class="otp-hint">💡 Demo code: <strong>1 2 3 4</strong></div>
+      <button class="big-action-btn" onclick="verifyOTP()">✅ Verify & Sign In</button>
+      <button class="back-link" onclick="showPhoneStep()">← Change number</button>
+    </div>
+
+    <!-- Step 4: Address -->
+    <div id="signin-step-4" style="display:none">
+      <button class="modal-x" onclick="closeSignIn()">✕</button>
+      <div class="modal-icon-big">🏠</div>
+      <h3>Where should we deliver?</h3>
+      <p class="modal-sub">Enter your delivery address</p>
+      <div class="address-form">
+        <input type="text" id="addr-name"   class="big-input" placeholder="👤  Your Name" />
+        <input type="text" id="addr-street" class="big-input" placeholder="🏠  House / Street" />
+        <input type="text" id="addr-city"   class="big-input" placeholder="🌆  City" />
+        <input type="tel"  id="addr-pin"    class="big-input" placeholder="📮  Pincode" maxlength="6" />
+      </div>
+      <button class="big-action-btn" onclick="saveAddress()">💾 Save & Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     PAYMENT MODAL
+══════════════════════════════ -->
+<div class="modal-overlay" id="payment-modal">
+  <div class="modal wide-modal">
+
+    <!-- Step 1: Choose method -->
+    <div id="pay-step-1">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">💳</div>
+      <h3>How do you want to pay?</h3>
+      <p class="modal-sub">Pick the easiest way for you</p>
+      <div class="pay-options">
+        <button class="pay-option-btn" onclick="selectPayment('upi')">
+          <span class="pay-icon">📲</span>
+          <div class="pay-info">
+            <strong>UPI / GPay / PhonePe</strong>
+            <small>Pay with any UPI app</small>
+          </div>
+          <span class="pay-check" id="check-upi"></span>
+        </button>
+        <button class="pay-option-btn" onclick="selectPayment('card')">
+          <span class="pay-icon">💳</span>
+          <div class="pay-info">
+            <strong>Debit / Credit Card</strong>
+            <small>Visa, Mastercard, RuPay</small>
+          </div>
+          <span class="pay-check" id="check-card"></span>
+        </button>
+        <button class="pay-option-btn" onclick="selectPayment('cod')">
+          <span class="pay-icon">💵</span>
+          <div class="pay-info">
+            <strong>Cash on Delivery</strong>
+            <small>Pay when food arrives</small>
+          </div>
+          <span class="pay-check" id="check-cod"></span>
+        </button>
+        <button class="pay-option-btn" onclick="selectPayment('wallet')">
+          <span class="pay-icon">👜</span>
+          <div class="pay-info">
+            <strong>Paytm Wallet</strong>
+            <small>Use your Paytm balance</small>
+          </div>
+          <span class="pay-check" id="check-wallet"></span>
+        </button>
+      </div>
+      <button class="big-action-btn" id="pay-next-btn" onclick="showPaymentDetails()" disabled>
+        Continue →
+      </button>
+    </div>
+
+    <!-- UPI details -->
+    <div id="pay-step-upi" style="display:none">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">📲</div>
+      <h3>Enter Your UPI ID</h3>
+      <p class="modal-sub">e.g. yourname@upi or 9876543210@okaxis</p>
+      <div class="big-input-wrap">
+        <input type="text" id="upi-input" class="big-input" placeholder="yourname@upi" />
+      </div>
+      <button class="big-action-btn" onclick="processPayment()">💸 Pay <span id="upi-amount"></span></button>
+      <button class="back-link" onclick="showPayStep1()">← Change method</button>
+    </div>
+
+    <!-- Card details -->
+    <div id="pay-step-card" style="display:none">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">💳</div>
+      <h3>Enter Card Details</h3>
+      <p class="modal-sub">Your info is safe with us 🔒</p>
+      <div class="address-form">
+        <input type="text" id="card-name" class="big-input" placeholder="👤  Name on Card" />
+        <input type="text" id="card-num"  class="big-input" placeholder="💳  1234  5678  9012  3456"
+               maxlength="19" oninput="formatCard(this)" />
+        <div style="display:flex;gap:12px">
+          <input type="text" id="card-exp" class="big-input" placeholder="📅  MM/YY"
+                 maxlength="5" oninput="formatExpiry(this)" style="flex:1" />
+          <input type="text" id="card-cvv" class="big-input" placeholder="🔐  CVV"
+                 maxlength="3" style="flex:1" />
+        </div>
+      </div>
+      <button class="big-action-btn" onclick="processPayment()">🔒 Pay Securely <span id="card-amount"></span></button>
+      <button class="back-link" onclick="showPayStep1()">← Change method</button>
+    </div>
+
+    <!-- COD -->
+    <div id="pay-step-cod" style="display:none">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">💵</div>
+      <h3>Cash on Delivery</h3>
+      <p class="modal-sub">Keep <strong id="cod-amount-text"></strong> ready when your order arrives!</p>
+      <div class="cod-info-box">
+        <div class="cod-row">✅ No online payment needed</div>
+        <div class="cod-row">🚀 Order placed instantly</div>
+        <div class="cod-row">🛵 Pay the delivery person</div>
+      </div>
+      <button class="big-action-btn" onclick="processPayment()">✅ Confirm Order</button>
+      <button class="back-link" onclick="showPayStep1()">← Change method</button>
+    </div>
+
+    <!-- Wallet -->
+    <div id="pay-step-wallet" style="display:none">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">👜</div>
+      <h3>Paytm Wallet</h3>
+      <p class="modal-sub">Enter your registered Paytm number</p>
+      <div class="big-input-wrap">
+        <span class="input-prefix">📱</span>
+        <input type="tel" id="wallet-input" class="big-input" placeholder="98765 43210" maxlength="10" />
+      </div>
+      <button class="big-action-btn" onclick="processPayment()">💸 Pay <span id="wallet-amount"></span></button>
+      <button class="back-link" onclick="showPayStep1()">← Change method</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ORDER SUCCESS MODAL -->
+<div class="modal-overlay" id="success-modal">
+  <div class="modal">
+    <div class="modal-icon-big">🎉</div>
+    <h3>Order Placed!</h3>
+    <p id="success-msg" style="color:var(--muted);margin-bottom:20px;line-height:1.7">
+      Your food is on its way. Sit back and relax!
+    </p>
+    <div class="delivery-eta">🕐 Estimated delivery: <strong>25–35 minutes</strong></div>
+    <button class="modal-close" onclick="closeSuccess()">👍 Great, Thanks!</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
