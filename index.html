@@ -9,21 +9,51 @@
 </head>
 <body>
 
+
+<!-- ══════════════════════════════
+     LANDING SCREEN
+══════════════════════════════ -->
+<div id="landing-screen">
+  <div class="landing-bg"></div>
+  <div class="landing-logo">Quick<span>Bite</span></div>
+  <div class="landing-tagline">Fresh food, fast delivery — always free 🚀</div>
+  <div class="landing-cards">
+    <div class="landing-card customer-card" onclick="enterAsCustomer()">
+      <div class="landing-card-icon">🍔</div>
+      <h3>I'm Hungry</h3>
+      <p>Browse restaurants, order food, and track your delivery in real time.</p>
+      <span class="lc-tag">Customer →</span>
+    </div>
+    <div class="landing-card staff-card" onclick="enterAsStaff()">
+      <div class="landing-card-icon">🏪</div>
+      <h3>Staff Login</h3>
+      <p>Manage orders, revenue, menu items, and customer complaints.</p>
+      <span class="lc-tag">Staff / Manager →</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     CUSTOMER APP
+══════════════════════════════ -->
+<div id="customer-app" style="display:none">
+
 <!-- NAV -->
 <nav>
-  <div class="logo">Quick<span>Bite</span></div>
+  <div class="logo" onclick="scrollToTop()">Quick<span>Bite</span></div>
   <ul class="nav-links">
+    <li><a href="#restaurants">Restaurants</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#how">How it works</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#" onclick="openHelp();return false;">Help</a></li>
   </ul>
   <div class="nav-right">
     <button class="btn sign-btn" id="nav-sign-btn" onclick="openSignIn()">
       👤 <span id="nav-user-label">Sign In</span>
     </button>
     <button class="btn cart-btn" onclick="toggleCart()">
-      🛒 Cart
-      <span id="cart-count">0</span>
+      🛒 Cart <span id="cart-count">0</span>
     </button>
   </div>
 </nav>
@@ -31,11 +61,11 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">🚀 Free Delivery Today</div>
+    <div class="hero-tag">🚀 Free Delivery, Always</div>
     <h1>Hungry? Get <em>Fresh Food</em> at Your Door</h1>
-    <p>Order from top local restaurants, enjoy free delivery on every order. Fast, fresh, and ridiculously simple.</p>
+    <p>Order from top local restaurants, mix items across kitchens, enjoy free delivery on every order.</p>
     <div class="hero-cta">
-      <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Browse Menu</button>
+      <button class="btn btn-primary" onclick="document.getElementById('restaurants').scrollIntoView({behavior:'smooth'})">Browse Restaurants</button>
       <button class="btn btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</button>
     </div>
     <div class="hero-search">
@@ -46,11 +76,20 @@
   <div class="hero-deco">🍔</div>
 </section>
 
+<!-- RESTAURANTS -->
+<section id="restaurants" class="restaurants-section">
+  <div class="section-header">
+    <h2>Pick Your Restaurant</h2>
+    <p>Choose one or mix items from multiple kitchens — your call!</p>
+  </div>
+  <div class="restaurants-grid" id="restaurants-grid"></div>
+</section>
+
 <!-- CATEGORIES -->
-<section class="categories-section">
+<section class="categories-section" style="padding-top:20px;">
   <div class="section-header">
     <h2>What are you craving?</h2>
-    <p>Pick a category and we'll show you the best options.</p>
+    <p>Filter by category across all restaurants.</p>
   </div>
   <div class="categories-grid" id="categories"></div>
 </section>
@@ -71,39 +110,19 @@
     <p>Three easy steps and your food is on the way.</p>
   </div>
   <div class="steps-grid">
-    <div class="step">
-      <div class="step-icon">🍽️</div>
-      <h4>Choose your meal</h4>
-      <p>Browse our menu and pick what you love. New items added daily.</p>
-    </div>
-    <div class="step">
-      <div class="step-icon">🛒</div>
-      <h4>Add to cart</h4>
-      <p>Add items, adjust quantities, and review your order any time.</p>
-    </div>
-    <div class="step">
-      <div class="step-icon">🚀</div>
-      <h4>Fast delivery</h4>
-      <p>We deliver to your door — free of charge, every single time.</p>
-    </div>
+    <div class="step"><div class="step-icon">🏪</div><h4>Pick restaurants</h4><p>Browse our partner restaurants and mix items from multiple kitchens in one order.</p></div>
+    <div class="step"><div class="step-icon">🛒</div><h4>Build your cart</h4><p>Add items, adjust quantities, choose pay-now or pay-on-delivery.</p></div>
+    <div class="step"><div class="step-icon">📍</div><h4>Track live</h4><p>Watch your rider on a live map as your food travels to your door — free every time.</p></div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="about-section">
-  <div class="section-header">
-    <h2>About QuickBite</h2>
-    <p>We believe great food should reach everyone — fast and free.</p>
-  </div>
-  <div class="about-text">
-    QuickBite started with a simple mission: no delivery fees, ever. We partner with the best local kitchens to bring you restaurant-quality meals at honest prices. Whether it's a weeknight dinner or a lazy weekend lunch, we've got you covered.
-  </div>
+  <div class="section-header"><h2>About QuickBite</h2><p>We believe great food should reach everyone — fast and free.</p></div>
+  <div class="about-text">QuickBite started with a simple mission: no delivery fees, ever. We partner with the best local kitchens to bring you restaurant-quality meals at honest prices. Whether it's a weeknight dinner or a lazy weekend lunch, we've got you covered.</div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 <strong>QuickBite</strong> · Free delivery, always. Built with ❤️</p>
-</footer>
+<footer><p>© 2025 <strong>QuickBite</strong> · Free delivery, always. Built with ❤️ · <a href="#" onclick="openHelp();return false;" style="color:var(--accent);text-decoration:none">Help & Complaints</a></p></footer>
 
 <!-- CART SIDEBAR -->
 <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
@@ -113,28 +132,197 @@
     <button class="close-cart" onclick="toggleCart()">✕</button>
   </div>
   <div class="cart-items" id="cart-items-list">
-    <div class="cart-empty">
-      <div class="icon">🛒</div>
-      <p>Your cart is empty.<br>Add something tasty!</p>
-    </div>
+    <div class="cart-empty"><div class="icon">🛒</div><p>Your cart is empty.<br>Add something tasty!</p></div>
   </div>
   <div class="cart-footer">
     <div class="cart-total-row"><span>Subtotal</span><span id="subtotal">₹0.00</span></div>
     <div class="cart-total-row"><span>Delivery</span><span class="free-label">FREE</span></div>
     <div class="cart-total-row final"><span>Total</span><span id="total">₹0.00</span></div>
-    <button class="checkout-btn" id="checkout-btn" onclick="handleCheckout()" disabled>
-      Proceed to Pay →
-    </button>
+    <button class="checkout-btn" id="checkout-btn" onclick="handleCheckout()" disabled>Proceed to Pay →</button>
+  </div>
+</div>
+
+</div><!-- /customer-app -->
+
+<!-- ══════════════════════════════
+     MANAGER DASHBOARD
+══════════════════════════════ -->
+<div id="manager-dashboard" style="display:none">
+  <nav class="dash-nav">
+    <div class="logo">Quick<span>Bite</span> <span style="font-size:.9rem;color:var(--muted);font-family:var(--font-body);font-weight:400"> Manager</span></div>
+    <div class="dash-nav-right">
+      <span class="manager-badge">🏪 Manager View</span>
+      <button class="logout-btn" onclick="logoutStaff()">← Exit</button>
+    </div>
+  </nav>
+  <div class="dash-body">
+    <div class="dash-welcome">
+      <h2>Good day, Manager 👋</h2>
+      <p id="dash-date-str" style="color:var(--muted)"></p>
+    </div>
+
+    <div class="dash-tabs">
+      <button class="dash-tab active" onclick="switchDashTab('overview')">📊 Overview</button>
+      <button class="dash-tab" onclick="switchDashTab('orders')">📋 Orders</button>
+      <button class="dash-tab" onclick="switchDashTab('revenue')">💰 Revenue</button>
+      <button class="dash-tab" onclick="switchDashTab('menu-mgr')">🍽️ Menu</button>
+      <button class="dash-tab" onclick="switchDashTab('complaints-mgr')">📩 Complaints</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="dash-panel active" id="panel-overview">
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="revenue-section">
+        <div class="rev-card">
+          <h4>Revenue This Week</h4>
+          <div class="bar-chart" id="rev-bar-chart"></div>
+        </div>
+        <div class="rev-card">
+          <h4>Repeat Customer Rate</h4>
+          <div class="repeat-ring">
+            <svg class="ring-svg" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="10"/>
+              <circle id="repeat-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="10"
+                stroke-dasharray="314" stroke-dashoffset="314"
+                stroke-linecap="round" transform="rotate(-90 60 60)"
+                style="transition:stroke-dashoffset 1.5s ease"/>
+            </svg>
+            <div class="ring-text" style="margin-top:-130px">
+              <div class="ring-pct" id="repeat-pct">0%</div>
+              <div class="ring-sub">Repeat Rate</div>
+            </div>
+          </div>
+          <div style="margin-top:80px;color:var(--muted);font-size:.85rem;line-height:1.7">
+            <div>📦 Total customers today: <strong id="cust-today" style="color:var(--text)">—</strong></div>
+            <div>🔁 Returning customers: <strong id="cust-repeat" style="color:var(--accent)">—</strong></div>
+            <div>🆕 New customers: <strong id="cust-new" style="color:var(--green)">—</strong></div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-card" style="margin-bottom:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h4>Recent Orders</h4>
+          <button class="export-btn" onclick="exportRevenue()">⬇ Export CSV</button>
+        </div>
+        <div id="overview-orders"></div>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div class="dash-panel" id="panel-orders">
+      <div class="orders-header">
+        <h3>All Orders</h3>
+        <div class="filter-btns">
+          <button class="filter-btn active" onclick="filterOrders('all',this)">All</button>
+          <button class="filter-btn" onclick="filterOrders('pending',this)">Pending</button>
+          <button class="filter-btn" onclick="filterOrders('preparing',this)">Preparing</button>
+          <button class="filter-btn" onclick="filterOrders('out',this)">Out for Delivery</button>
+          <button class="filter-btn" onclick="filterOrders('delivered',this)">Delivered</button>
+        </div>
+      </div>
+      <div class="orders-table">
+        <div class="orders-table-head">
+          <span>Order #</span><span>Items</span><span>Restaurant</span><span>Amount</span><span>Status</span><span>Actions</span>
+        </div>
+        <div id="orders-table-body"></div>
+      </div>
+    </div>
+
+    <!-- REVENUE -->
+    <div class="dash-panel" id="panel-revenue">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem">Revenue Analytics</h3>
+        <button class="export-btn" onclick="exportRevenue()">⬇ Export CSV</button>
+      </div>
+      <div class="kpi-grid" id="rev-kpi-grid"></div>
+      <div class="revenue-section" style="margin-top:24px">
+        <div class="rev-card">
+          <h4>Daily Revenue (This Week)</h4>
+          <div class="bar-chart" id="rev-bar-chart-2"></div>
+        </div>
+        <div class="rev-card">
+          <h4>Revenue by Restaurant</h4>
+          <div id="rev-by-rest"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU MANAGER -->
+    <div class="dash-panel" id="panel-menu-mgr">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem">Menu Management</h3>
+        <button class="big-action-btn" style="width:auto;padding:10px 22px;font-size:.9rem;margin:0" onclick="showAddItemForm()">+ Add Item</button>
+      </div>
+      <div class="menu-manager-grid" id="menu-manager-grid"></div>
+    </div>
+
+    <!-- COMPLAINTS MANAGER -->
+    <div class="dash-panel" id="panel-complaints-mgr">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <h3 style="font-family:var(--font-display);font-size:1.4rem">Customer Complaints</h3>
+        <span id="open-complaints-count" style="color:var(--accent2);font-size:.88rem;font-weight:600"></span>
+      </div>
+      <div class="complaint-list" id="manager-complaints-list"></div>
+    </div>
+
   </div>
 </div>
 
 <!-- ══════════════════════════════
-     SIGN IN MODAL
+     WAITER DASHBOARD
 ══════════════════════════════ -->
+<div id="waiter-dashboard" style="display:none">
+  <nav class="dash-nav">
+    <div class="logo">Quick<span>Bite</span> <span style="font-size:.9rem;color:var(--muted);font-family:var(--font-body);font-weight:400"> Kitchen</span></div>
+    <div class="dash-nav-right">
+      <span class="manager-badge" style="background:rgba(167,139,250,.15);color:var(--purple);border-color:rgba(167,139,250,.3)">🧑‍🍳 Staff View</span>
+      <button class="logout-btn" onclick="logoutStaff()">← Exit</button>
+    </div>
+  </nav>
+  <div style="padding:30px 40px 10px 40px;max-width:1200px;margin:0 auto">
+    <h2 style="font-family:var(--font-display);font-size:1.8rem;margin-bottom:4px">Kitchen Orders 🍳</h2>
+    <p style="color:var(--muted);margin-bottom:24px">Update order status as you prepare and dispatch.</p>
+    <div class="filter-btns" style="margin-bottom:20px">
+      <button class="filter-btn active" onclick="filterWaiterOrders('all',this)">All</button>
+      <button class="filter-btn" onclick="filterWaiterOrders('pending',this)">New</button>
+      <button class="filter-btn" onclick="filterWaiterOrders('preparing',this)">Preparing</button>
+      <button class="filter-btn" onclick="filterWaiterOrders('out',this)">Out</button>
+    </div>
+  </div>
+  <div class="waiter-orders" id="waiter-orders-grid"></div>
+</div>
+
+<!-- ══════════════════════════════
+     MODALS
+══════════════════════════════ -->
+
+<!-- STAFF LOGIN MODAL -->
+<div class="modal-overlay" id="staff-login-modal">
+  <div class="modal wide-modal">
+    <button class="modal-x" onclick="closeStaffLogin()">✕</button>
+    <div class="modal-icon-big">🏪</div>
+    <h3>Staff Login</h3>
+    <p class="modal-sub">Select your role to continue</p>
+    <div class="signin-role-btns">
+      <button class="role-btn staff-role" id="role-manager" onclick="selectStaffRole('manager')">
+        <span class="rb-icon">📊</span>Manager
+      </button>
+      <button class="role-btn staff-role" id="role-waiter" onclick="selectStaffRole('waiter')">
+        <span class="rb-icon">🧑‍🍳</span>Kitchen Staff
+      </button>
+    </div>
+    <div class="big-input-wrap" style="margin-bottom:12px">
+      <span class="input-prefix">🔑</span>
+      <input type="password" id="staff-pass" class="big-input" placeholder="Enter password (demo: 1234)" />
+    </div>
+    <button class="big-action-btn" onclick="submitStaffLogin()">🔓 Login</button>
+    <div style="color:var(--muted);font-size:.8rem;margin-top:4px">Demo password: <strong style="color:var(--accent)">1234</strong></div>
+  </div>
+</div>
+
+<!-- SIGN IN MODAL -->
 <div class="modal-overlay" id="signin-modal">
   <div class="modal wide-modal">
-
-    <!-- Step 1: Choose method -->
     <div id="signin-step-1">
       <button class="modal-x" onclick="closeSignIn()">✕</button>
       <div class="modal-icon-big">👋</div>
@@ -142,20 +330,14 @@
       <p class="modal-sub">How would you like to sign in?</p>
       <div class="signin-options">
         <button class="signin-option-btn" onclick="showPhoneStep()">
-          <span class="option-icon">📱</span>
-          <span class="option-label">Use my Phone Number</span>
-          <span class="option-arrow">→</span>
+          <span class="option-icon">📱</span><span class="option-label">Use my Phone Number</span><span class="option-arrow">→</span>
         </button>
         <button class="signin-option-btn" onclick="quickGuestLogin()">
-          <span class="option-icon">🚀</span>
-          <span class="option-label">Continue as Guest</span>
-          <span class="option-arrow">→</span>
+          <span class="option-icon">🚀</span><span class="option-label">Continue as Guest</span><span class="option-arrow">→</span>
         </button>
       </div>
       <p class="signin-note">No password needed. Super easy! 🎉</p>
     </div>
-
-    <!-- Step 2: Phone number -->
     <div id="signin-step-2" style="display:none">
       <button class="modal-x" onclick="closeSignIn()">✕</button>
       <div class="modal-icon-big">📱</div>
@@ -163,15 +345,11 @@
       <p class="modal-sub">We'll send you a quick 4-digit code</p>
       <div class="big-input-wrap">
         <span class="input-prefix">🇮🇳 +91</span>
-        <input type="tel" id="phone-input" class="big-input"
-               placeholder="98765 43210" maxlength="10"
-               oninput="this.value=this.value.replace(/\D/g,'')" />
+        <input type="tel" id="phone-input" class="big-input" placeholder="98765 43210" maxlength="10" oninput="this.value=this.value.replace(/\D/g,'')" />
       </div>
       <button class="big-action-btn" onclick="sendOTP()">📨 Send Code</button>
       <button class="back-link" onclick="showSignInStep1()">← Go back</button>
     </div>
-
-    <!-- Step 3: OTP -->
     <div id="signin-step-3" style="display:none">
       <button class="modal-x" onclick="closeSignIn()">✕</button>
       <div class="modal-icon-big">🔐</div>
@@ -187,115 +365,66 @@
       <button class="big-action-btn" onclick="verifyOTP()">✅ Verify & Sign In</button>
       <button class="back-link" onclick="showPhoneStep()">← Change number</button>
     </div>
-
-    <!-- Step 4: Address -->
     <div id="signin-step-4" style="display:none">
       <button class="modal-x" onclick="closeSignIn()">✕</button>
       <div class="modal-icon-big">🏠</div>
       <h3>Where should we deliver?</h3>
       <p class="modal-sub">Enter your delivery address</p>
       <div class="address-form">
-        <input type="text" id="addr-name"   class="big-input" placeholder="👤  Your Name" />
+        <input type="text" id="addr-name" class="big-input" placeholder="👤  Your Name" />
         <input type="text" id="addr-street" class="big-input" placeholder="🏠  House / Street" />
-        <input type="text" id="addr-city"   class="big-input" placeholder="🌆  City" />
-        <input type="tel"  id="addr-pin"    class="big-input" placeholder="📮  Pincode" maxlength="6" />
+        <input type="text" id="addr-city" class="big-input" placeholder="🌆  City" />
+        <input type="tel" id="addr-pin" class="big-input" placeholder="📮  Pincode" maxlength="6" />
       </div>
       <button class="big-action-btn" onclick="saveAddress()">💾 Save & Continue</button>
     </div>
-
   </div>
 </div>
 
-<!-- ══════════════════════════════
-     PAYMENT MODAL
-══════════════════════════════ -->
+<!-- PAYMENT MODAL -->
 <div class="modal-overlay" id="payment-modal">
   <div class="modal wide-modal">
-
-    <!-- Step 1: Choose method -->
-    <div id="pay-step-1">
+    <!-- Pay Timing -->
+    <div id="pay-step-timing">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">🕐</div>
+      <h3>When to Pay?</h3>
+      <p class="modal-sub">Pick what works best for you</p>
+      <div class="pay-timing-opts">
+        <button class="pay-time-btn" id="ptime-now" onclick="selectPayTiming('now')">
+          <span>💳</span>Pay Now
+        </button>
+        <button class="pay-time-btn" id="ptime-delivery" onclick="selectPayTiming('delivery')">
+          <span>🚪</span>Pay on Delivery
+        </button>
+      </div>
+      <button class="big-action-btn" id="ptime-next-btn" onclick="showPayStep1()" disabled>Continue →</button>
+    </div>
+    <!-- Method -->
+    <div id="pay-step-1" style="display:none">
       <button class="modal-x" onclick="closePayment()">✕</button>
       <div class="modal-icon-big">💳</div>
       <h3>How do you want to pay?</h3>
-      <p class="modal-sub">Pick the easiest way for you</p>
+      <p class="modal-sub" id="pay-step1-sub">Pick the easiest way</p>
       <div class="pay-options">
-        <button class="pay-option-btn" onclick="selectPayment('upi')">
-          <span class="pay-icon">📲</span>
-          <div class="pay-info">
-            <strong>UPI / GPay / PhonePe</strong>
-            <small>Pay with any UPI app</small>
-          </div>
-          <span class="pay-check" id="check-upi"></span>
+        <button class="pay-option-btn" id="popt-upi" onclick="selectPayment('upi')">
+          <span class="pay-icon">📲</span><div class="pay-info"><strong>UPI / GPay / PhonePe</strong><small>Pay with any UPI app</small></div><span class="pay-check" id="check-upi"></span>
         </button>
-        <button class="pay-option-btn" onclick="selectPayment('card')">
-          <span class="pay-icon">💳</span>
-          <div class="pay-info">
-            <strong>Debit / Credit Card</strong>
-            <small>Visa, Mastercard, RuPay</small>
-          </div>
-          <span class="pay-check" id="check-card"></span>
+        <button class="pay-option-btn" id="popt-card" onclick="selectPayment('card')">
+          <span class="pay-icon">💳</span><div class="pay-info"><strong>Debit / Credit Card</strong><small>Visa, Mastercard, RuPay</small></div><span class="pay-check" id="check-card"></span>
         </button>
-        <button class="pay-option-btn" onclick="selectPayment('cod')">
-          <span class="pay-icon">💵</span>
-          <div class="pay-info">
-            <strong>Cash on Delivery</strong>
-            <small>Pay when food arrives</small>
-          </div>
-          <span class="pay-check" id="check-cod"></span>
-        </button>
-        <button class="pay-option-btn" onclick="selectPayment('wallet')">
-          <span class="pay-icon">👜</span>
-          <div class="pay-info">
-            <strong>Paytm Wallet</strong>
-            <small>Use your Paytm balance</small>
-          </div>
-          <span class="pay-check" id="check-wallet"></span>
+        <button class="pay-option-btn" id="popt-wallet" onclick="selectPayment('wallet')">
+          <span class="pay-icon">👜</span><div class="pay-info"><strong>Paytm Wallet</strong><small>Use your Paytm balance</small></div><span class="pay-check" id="check-wallet"></span>
         </button>
       </div>
-      <button class="big-action-btn" id="pay-next-btn" onclick="showPaymentDetails()" disabled>
-        Continue →
-      </button>
+      <button class="big-action-btn" id="pay-next-btn" onclick="showPaymentDetails()" disabled>Continue →</button>
+      <button class="back-link" onclick="showPayTiming()">← Change timing</button>
     </div>
-
-    <!-- UPI details -->
-    <div id="pay-step-upi" style="display:none">
-      <button class="modal-x" onclick="closePayment()">✕</button>
-      <div class="modal-icon-big">📲</div>
-      <h3>Enter Your UPI ID</h3>
-      <p class="modal-sub">e.g. yourname@upi or 9876543210@okaxis</p>
-      <div class="big-input-wrap">
-        <input type="text" id="upi-input" class="big-input" placeholder="yourname@upi" />
-      </div>
-      <button class="big-action-btn" onclick="processPayment()">💸 Pay <span id="upi-amount"></span></button>
-      <button class="back-link" onclick="showPayStep1()">← Change method</button>
-    </div>
-
-    <!-- Card details -->
-    <div id="pay-step-card" style="display:none">
-      <button class="modal-x" onclick="closePayment()">✕</button>
-      <div class="modal-icon-big">💳</div>
-      <h3>Enter Card Details</h3>
-      <p class="modal-sub">Your info is safe with us 🔒</p>
-      <div class="address-form">
-        <input type="text" id="card-name" class="big-input" placeholder="👤  Name on Card" />
-        <input type="text" id="card-num"  class="big-input" placeholder="💳  1234  5678  9012  3456"
-               maxlength="19" oninput="formatCard(this)" />
-        <div style="display:flex;gap:12px">
-          <input type="text" id="card-exp" class="big-input" placeholder="📅  MM/YY"
-                 maxlength="5" oninput="formatExpiry(this)" style="flex:1" />
-          <input type="text" id="card-cvv" class="big-input" placeholder="🔐  CVV"
-                 maxlength="3" style="flex:1" />
-        </div>
-      </div>
-      <button class="big-action-btn" onclick="processPayment()">🔒 Pay Securely <span id="card-amount"></span></button>
-      <button class="back-link" onclick="showPayStep1()">← Change method</button>
-    </div>
-
-    <!-- COD -->
-    <div id="pay-step-cod" style="display:none">
+    <!-- COD confirmation (pay on delivery) -->
+    <div id="pay-step-cod-confirm" style="display:none">
       <button class="modal-x" onclick="closePayment()">✕</button>
       <div class="modal-icon-big">💵</div>
-      <h3>Cash on Delivery</h3>
+      <h3>Pay on Delivery</h3>
       <p class="modal-sub">Keep <strong id="cod-amount-text"></strong> ready when your order arrives!</p>
       <div class="cod-info-box">
         <div class="cod-row">✅ No online payment needed</div>
@@ -303,9 +432,35 @@
         <div class="cod-row">🛵 Pay the delivery person</div>
       </div>
       <button class="big-action-btn" onclick="processPayment()">✅ Confirm Order</button>
+      <button class="back-link" onclick="showPayTiming()">← Change timing</button>
+    </div>
+    <!-- UPI -->
+    <div id="pay-step-upi" style="display:none">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">📲</div>
+      <h3>Enter Your UPI ID</h3>
+      <p class="modal-sub">e.g. yourname@upi or 9876543210@okaxis</p>
+      <div class="big-input-wrap"><input type="text" id="upi-input" class="big-input" placeholder="yourname@upi" /></div>
+      <button class="big-action-btn" onclick="processPayment()">💸 Pay <span id="upi-amount"></span></button>
       <button class="back-link" onclick="showPayStep1()">← Change method</button>
     </div>
-
+    <!-- Card -->
+    <div id="pay-step-card" style="display:none">
+      <button class="modal-x" onclick="closePayment()">✕</button>
+      <div class="modal-icon-big">💳</div>
+      <h3>Enter Card Details</h3>
+      <p class="modal-sub">Your info is safe with us 🔒</p>
+      <div class="address-form">
+        <input type="text" id="card-name" class="big-input" placeholder="👤  Name on Card" />
+        <input type="text" id="card-num" class="big-input" placeholder="💳  1234  5678  9012  3456" maxlength="19" oninput="formatCard(this)" />
+        <div style="display:flex;gap:12px">
+          <input type="text" id="card-exp" class="big-input" placeholder="📅  MM/YY" maxlength="5" oninput="formatExpiry(this)" style="flex:1" />
+          <input type="text" id="card-cvv" class="big-input" placeholder="🔐  CVV" maxlength="3" style="flex:1" />
+        </div>
+      </div>
+      <button class="big-action-btn" onclick="processPayment()">🔒 Pay Securely <span id="card-amount"></span></button>
+      <button class="back-link" onclick="showPayStep1()">← Change method</button>
+    </div>
     <!-- Wallet -->
     <div id="pay-step-wallet" style="display:none">
       <button class="modal-x" onclick="closePayment()">✕</button>
@@ -319,7 +474,6 @@
       <button class="big-action-btn" onclick="processPayment()">💸 Pay <span id="wallet-amount"></span></button>
       <button class="back-link" onclick="showPayStep1()">← Change method</button>
     </div>
-
   </div>
 </div>
 
@@ -328,16 +482,78 @@
   <div class="modal">
     <div class="modal-icon-big">🎉</div>
     <h3>Order Placed!</h3>
-    <p id="success-msg" style="color:var(--muted);margin-bottom:20px;line-height:1.7">
-      Your food is on its way. Sit back and relax!
-    </p>
+    <p id="success-msg" style="color:var(--muted);margin-bottom:20px;line-height:1.7">Your food is on its way!</p>
     <div class="delivery-eta">🕐 Estimated delivery: <strong>25–35 minutes</strong></div>
-    <button class="modal-close" onclick="closeSuccess()">👍 Great, Thanks!</button>
+    <button class="modal-close" onclick="closeSuccessAndTrack()">📍 Track My Order</button>
+    <br>
+    <button class="back-link" onclick="closeSuccess()" style="margin-top:10px">Close</button>
+  </div>
+</div>
+
+<!-- DELIVERY TRACKING MODAL -->
+<div class="modal-overlay" id="tracking-modal">
+  <div class="modal wide-modal">
+    <button class="modal-x" onclick="closeTracking()">✕</button>
+    <div class="tracking-header">
+      <h3>Live Tracking 📍</h3>
+      <p id="track-order-id" style="color:var(--muted)">Order #QB0001</p>
+    </div>
+    <div class="tracking-map">
+      <div class="map-bg"></div>
+      <div class="rider-dot" id="rider-dot">🛵</div>
+      <div class="dest-dot">🏠</div>
+    </div>
+    <div class="track-progress">
+      <div class="track-progress-fill" id="track-progress-fill" style="width:0%"></div>
+    </div>
+    <p class="track-eta" style="margin-bottom:20px">ETA: <strong id="track-eta-text" class="">Calculating…</strong></p>
+    <div class="tracking-steps" id="tracking-steps"></div>
+  </div>
+</div>
+
+<!-- HELP MODAL -->
+<div class="modal-overlay help-modal" id="help-modal">
+  <div class="modal wide-modal" style="text-align:left">
+    <button class="modal-x" onclick="closeHelp()">✕</button>
+    <div style="text-align:center;margin-bottom:24px">
+      <div class="modal-icon-big">🛟</div>
+      <h3>Help Centre</h3>
+    </div>
+    <div class="help-tabs">
+      <button class="help-tab active" onclick="switchHelpTab('faq',this)">❓ FAQ</button>
+      <button class="help-tab" onclick="switchHelpTab('complaint',this)">📩 Lodge Complaint</button>
+      <button class="help-tab" onclick="switchHelpTab('my-complaints',this)">📋 My Complaints</button>
+    </div>
+    <div class="help-panel active" id="help-faq">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does delivery take? <span>▼</span></div><div class="faq-a">Most orders are delivered in 25–35 minutes. You can track your order live after placing it.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is delivery really free? <span>▼</span></div><div class="faq-a">Yes, always! QuickBite charges zero delivery fees on every order, every time.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I order from multiple restaurants? <span>▼</span></div><div class="faq-a">Absolutely! Add items from different restaurants to the same cart and we'll coordinate delivery.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I cancel an order? <span>▼</span></div><div class="faq-a">Orders can be cancelled within 2 minutes of placing them. After that, please raise a complaint.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">My food arrived cold / wrong item — what do I do? <span>▼</span></div><div class="faq-a">We're sorry! Please lodge a complaint below and our team will resolve it within 24 hours with a refund or re-delivery.</div></div>
+    </div>
+    <div class="help-panel" id="help-complaint">
+      <div class="complaint-form">
+        <select id="complaint-type">
+          <option value="">Select complaint type…</option>
+          <option value="delivery">🚚 Late / Wrong Delivery</option>
+          <option value="quality">🍽️ Food Quality</option>
+          <option value="payment">💳 Payment Issue</option>
+          <option value="other">📌 Other</option>
+        </select>
+        <input type="text" id="complaint-order-id" class="big-input" placeholder="Order ID (e.g. QB0001)" style="border-radius:10px;border:1.5px solid var(--border)" />
+        <textarea id="complaint-text" class="big-input" placeholder="Describe your issue…" style="border-radius:10px;min-height:100px;resize:vertical"></textarea>
+        <button class="submit-complaint" onclick="submitComplaint()">📨 Submit Complaint</button>
+      </div>
+    </div>
+    <div class="help-panel" id="help-my-complaints">
+      <div id="my-complaints-list"></div>
+    </div>
   </div>
 </div>
 
 <!-- TOAST -->
 <div id="toast"></div>
+
 
 <script src="app.js"></script>
 </body>
